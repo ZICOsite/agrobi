@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn instance to serve Agrobi 
+After=network.target
+
+
+[Service]
+User=odya
+Group=www-data
+WorkingDirectory=/home/odya/agrobi
+Environment="PATH=/home/odya/agrobi/env/bin"
+ExecStart=/home/odya/agrobi/env/bin/gunicorn -c g_config.py agrobi.wsgi:application
+
+
+[Install]
+WantedBy=multi-user.target
